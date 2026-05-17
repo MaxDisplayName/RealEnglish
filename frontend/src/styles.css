@@ -1,0 +1,186 @@
+@import "element-plus/dist/index.css";
+@import "highlight.js/styles/github.css";
+
+:root {
+  --color-primary: #58CC02;
+  --color-primary-dark: #46A302;
+  --color-primary-light: #E5F8D1;
+  --color-blue: #1CB0F6;
+  --color-blue-light: #DDF4FF;
+  --color-purple: #CE82FF;
+  --color-purple-light: #F3E5FF;
+  --color-orange: #FF9600;
+  --color-orange-light: #FFF2E0;
+  --color-red: #FF4B4B;
+  --color-red-light: #FFE5E5;
+  --color-success: #58CC02;
+  --color-warning: #FF9600;
+  --color-danger: #FF4B4B;
+  --level-a: #58CC02;
+  --level-b: #1CB0F6;
+  --level-c: #CE82FF;
+  --text-main: #4B4B4B;
+  --text-secondary: #AFAFAF;
+  --text-light: #C2C2C2;
+  --bg-page: #FFFFFF;
+  --bg-surface: #F7F7F7;
+  --border-color: #E5E5E5;
+  --radius-sm: 8px;
+  --radius-base: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-pill: 100px;
+  --shadow-btn: 0 4px 0 #45A502;
+  --shadow-btn-hover: 0 2px 0 #45A502;
+  --shadow-sm: 0 2px 0 rgba(0,0,0,.04);
+  --shadow-card: 0 2px 8px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,.1);
+  --ease: cubic-bezier(0.4,0,0.2,1);
+  --ease-bounce: cubic-bezier(0.34,1.56,0.64,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  background:var(--bg-page);
+  color:var(--text-main)
+}
+
+#app{min-height:100vh}
+
+/* ════ Card ════ */
+.el-card{
+  border-radius:var(--radius-base)!important;
+  border:2px solid var(--border-color)!important;
+  box-shadow:none!important;
+  transition:border-color .2s var(--ease)
+}
+.el-card:hover{border-color:#D1D1D1!important}
+
+/* ════ Duolingo 3D Button ════ */
+.el-button--primary{
+  background:var(--color-primary)!important;
+  border:none!important;
+  font-weight:700!important;
+  font-size:15px!important;
+  letter-spacing:.02em;
+  border-radius:var(--radius-base)!important;
+  padding:10px 24px!important;
+  box-shadow:var(--shadow-btn)!important;
+  transition:all .12s var(--ease)!important;
+  transform:translateY(0)
+}
+.el-button--primary:hover{
+  filter:brightness(1.05);
+  transform:translateY(2px);
+  box-shadow:var(--shadow-btn-hover)!important
+}
+.el-button--primary:active{
+  transform:translateY(4px);
+  box-shadow:none!important
+}
+
+.el-button--default{
+  border-radius:var(--radius-base)!important;
+  font-weight:600!important;
+  border:2px solid var(--border-color)!important;
+  transition:all .15s var(--ease)!important
+}
+.el-button--default:hover{border-color:var(--color-primary)!important;color:var(--color-primary)!important}
+
+.el-button--success{
+  background:var(--color-success)!important;border:none!important;
+  font-weight:700!important;border-radius:var(--radius-base)!important;
+  box-shadow:0 4px 0 #45A502!important
+}
+.el-button--success:hover{filter:brightness(1.05);transform:translateY(1px)}
+
+.el-button--warning{
+  background:var(--color-warning)!important;border:none!important;
+  font-weight:700!important;border-radius:var(--radius-base)!important;
+  box-shadow:0 4px 0 #E08600!important
+}
+
+.el-button--danger{
+  background:var(--color-red)!important;border:none!important;
+  font-weight:700!important;border-radius:var(--radius-base)!important;
+  box-shadow:0 4px 0 #E53E3E!important;
+  color:#fff!important;
+  transform:translateY(0);
+  transition:all .12s var(--ease)!important
+}
+.el-button--danger:hover{filter:brightness(1.08);transform:translateY(2px);box-shadow:0 2px 0 #E53E3E!important}
+.el-button--danger:active{transform:translateY(4px);box-shadow:none!important}
+
+/* ════ Input ════ */
+.el-input__wrapper,.el-textarea__inner{
+  border-radius:var(--radius-sm)!important;
+  border:2px solid var(--border-color)!important;
+  box-shadow:none!important;
+  transition:all .2s var(--ease)!important;
+  background:var(--bg-surface)!important
+}
+.el-input__wrapper:hover,.el-textarea__inner:hover{background:#fff!important}
+.el-input.is-focus .el-input__wrapper,.el-textarea__inner:focus{
+  border-color:var(--color-primary)!important;
+  background:#fff!important;
+  box-shadow:0 0 0 4px rgba(88,204,2,.1)!important
+}
+
+/* ════ Tag ════ */
+.el-tag{border-radius:20px!important;font-weight:700!important;border:none!important}
+.el-tag--primary,.el-tag--success{background:var(--color-primary-light);color:var(--color-primary-dark)}
+.el-tag--warning{background:var(--color-orange-light);color:#E08600}
+.el-tag--info{background:var(--color-blue-light);color:#1493D3}
+.el-tag--danger{background:var(--color-red-light);color:var(--color-red)}
+
+/* ════ Progress ════ */
+.el-progress-bar__outer{border-radius:100px!important;background:#E5E5E5!important}
+.el-progress-bar__inner{border-radius:100px!important}
+
+/* ════ Misc ════ */
+.el-radio__input.is-checked .el-radio__inner{background:var(--color-primary);border-color:var(--color-primary)}
+.el-checkbox__input.is-checked .el-checkbox__inner{background:var(--color-primary);border-color:var(--color-primary)}
+.el-select .el-input__wrapper{border-radius:var(--radius-sm)!important}
+.el-dialog{border-radius:var(--radius-md)!important}
+.el-table th.el-table__cell{background:var(--bg-surface);font-weight:700;color:var(--text-main)}
+.el-pagination .el-pager li.is-active{background:var(--color-primary)!important;border-radius:var(--radius-sm)!important}
+
+/* ════ Difficulty Badge ════ */
+.diff-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.diff-badge.diff-a { background: var(--color-primary-light); color: var(--color-primary-dark); }
+.diff-badge.diff-b { background: var(--color-blue-light); color: #1493D3; }
+.diff-badge.diff-c { background: var(--color-purple-light); color: #9B4DE0; }
+
+.diff-badge-solid {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+}
+.diff-badge-solid.diff-a { background: var(--color-primary); }
+.diff-badge-solid.diff-b { background: var(--color-blue); }
+.diff-badge-solid.diff-c { background: var(--color-purple); }
+
+/* ════ Scrollbar ════ */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#D1D1D1;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-secondary)}
+
+/* ════ Shared animations ════ */
+@keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes bounceIn{0%{opacity:0;transform:scale(.8)}60%{opacity:1;transform:scale(1.06)}100%{transform:scale(1)}}

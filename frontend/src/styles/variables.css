@@ -1,0 +1,19 @@
+:root {
+  --color-primary: #4F46E5;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --level-a: #F59E0B;
+  --level-b: #4F46E5;
+  --level-c: #10B981;
+  --radius-base: 10px;
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #F8FAFC;
+  color: #1E293B;
+}
+#app { min-height: 100vh; }

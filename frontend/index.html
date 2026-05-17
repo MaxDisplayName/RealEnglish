@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>RealEnglish - AI 驱动的英语视听说学习平台</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #58CC02; --green-dark: #46A302; --green-light: #E5F8D1;
+  --blue: #1CB0F6; --blue-light: #DDF4FF;
+  --purple: #CE82FF; --purple-light: #F3E5FF;
+  --orange: #FF9600; --orange-light: #FFF2E0;
+  --red: #FF4B4B; --text: #4B4B4B; --text2: #AFAFAF;
+  --bg: #FFFFFF; --bg2: #F7F7F7; --border: #E5E5E5;
+  --shadow-btn: 0 4px 0 #45A502;
+  --radius: 12px; --radius-lg: 20px;
+  --ease: cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Plus Jakarta Sans','PingFang SC','Microsoft YaHei',-apple-system,sans-serif;
+  color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  background:linear-gradient(180deg,#F2FCE9 0%,var(--bg) 15%,var(--bg) 60%,#F5FDF0 80%,var(--bg) 100%)
+}
+
+/* ════ NAV ════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);transition:all .3s
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-icon{width:36px;height:36px;border-radius:10px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:800}
+.nav-title{font-size:18px;font-weight:800;color:var(--green)}
+.nav-links{display:flex;align-items:center;gap:10px}
+.nav-btn{padding:8px 18px;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.nav-login{background:transparent;color:var(--text2)}
+.nav-login:hover{color:var(--text);background:var(--bg2)}
+.nav-start{background:var(--green);color:#fff;box-shadow:var(--shadow-btn);transform:translateY(0)}
+.nav-start:hover{transform:translateY(2px);box-shadow:0 2px 0 #45A502}
+.nav-user{background:var(--green-light);color:var(--green-dark);font-weight:700}
+
+/* ════ HERO ════ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#F2FCE9 0%,var(--bg) 100%)
+}
+.hero-bg-deco{position:absolute;border-radius:50%;opacity:.15;pointer-events:none}
+.hero-bg-deco.d1{width:500px;height:500px;background:var(--green);top:-20%;left:-10%;filter:blur(80px)}
+.hero-bg-deco.d2{width:350px;height:350px;background:var(--blue);top:30%;right:-5%;filter:blur(60px)}
+.hero-bg-deco.d3{width:250px;height:250px;background:var(--purple);bottom:10%;left:30%;filter:blur(50px)}
+.hero-illustration{position:absolute;right:5%;bottom:8%;width:min(440px,38vw);pointer-events:none;z-index:0;animation:float 5s ease-in-out infinite}
+.hero-illustration-left{position:absolute;left:3%;bottom:12%;width:min(340px,28vw);pointer-events:none;z-index:0;animation:float 5s ease-in-out 1s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.hero-inner{position:relative;z-index:1;max-width:680px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 16px;background:var(--green-light);color:var(--green-dark);border-radius:100px;font-size:13px;font-weight:700;margin-bottom:24px}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+.hero h1{font-size:clamp(34px,6vw,54px);font-weight:800;line-height:1.12;margin-bottom:16px;color:#2B2B2B}
+.hero h1 .hl{color:var(--green);position:relative}
+.hero h1 .hl::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:8px;background:var(--green-light);border-radius:4px;z-index:-1;opacity:.6}
+.hero p{font-size:18px;color:var(--text2);max-width:500px;margin:0 auto 32px;line-height:1.7}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-lg{padding:15px 32px;border-radius:100px;font-size:16px;font-weight:700;cursor:pointer;border:none;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-green{background:var(--green);color:#fff;box-shadow:var(--shadow-btn);transform:translateY(0)}
+.btn-green:hover{transform:translateY(2px);box-shadow:0 2px 0 #45A502}
+.btn-white{background:var(--bg);color:var(--text);border:2px solid var(--border)}
+.btn-white:hover{border-color:var(--green);color:var(--green)}
+/* ════ SCROLL STACK ════ */
+.section{padding:40px 24px 0;max-width:1100px;margin:0 auto}
+.section-tag{text-align:center;font-size:14px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.section-title{text-align:center;font-size:clamp(30px,5vw,42px);font-weight:800;margin-bottom:14px;color:#2B2B2B}
+.section-sub{text-align:center;font-size:18px;color:var(--text2);max-width:560px;margin:0 auto 48px}
+/* Scroll Stack — full page, cards in natural flow */
+.scroll-stack-wrapper{position:relative;padding:0 0 20vh;z-index:1}
+/* Glow decorations for scroll stack */
+.stack-glow{
+  position:absolute;border-radius:50%;pointer-events:none;z-index:0
+}
+.stack-glow.sg1{width:700px;height:700px;background:var(--green);top:-5%;left:-20%;filter:blur(120px);opacity:.07}
+.stack-glow.sg2{width:500px;height:500px;background:var(--blue);top:25%;right:-15%;filter:blur(100px);opacity:.06}
+.stack-glow.sg3{width:550px;height:550px;background:var(--purple);bottom:15%;left:20%;filter:blur(110px);opacity:.06}
+.stack-glow.sg4{width:400px;height:400px;background:var(--orange);top:55%;left:-10%;filter:blur(90px);opacity:.05}
+.stack-glow.sg5{width:350px;height:350px;background:var(--green);bottom:-5%;right:5%;filter:blur(80px);opacity:.05}
+/* Cards in normal document flow */
+.stack-card{
+  position:relative;width:min(900px,94vw);min-height:280px;margin:0 auto 100px;z-index:1;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
+  border:2px solid var(--border);border-radius:var(--radius-lg);padding:48px 52px;
+  display:flex;align-items:center;gap:40px;
+  box-shadow:0 0 30px rgba(0,0,0,.06),0 0 80px rgba(88,204,2,.04);
+  will-change:transform;transform-origin:top center;backface-visibility:hidden;
+}
+.stack-card-img{width:220px;height:auto;flex-shrink:0}
+.stack-card-body{flex:1;min-width:0}
+.stack-card-body h3{font-size:28px;font-weight:800;margin-bottom:12px;color:#2B2B2B}
+.stack-card-body p{font-size:16px;color:var(--text2);line-height:1.75}
+.scroll-stack-end{width:100%;height:1px}
+/* Floating decoration SVGs around scroll cards */
+.deco-svg{position:absolute;pointer-events:none;z-index:2;animation:float 5s ease-in-out infinite}
+.deco-right{right:-20%}
+.deco-left{left:-20%}
+.deco-1{top:15%;width:min(280px,22vw);animation-delay:0s}
+.deco-2{top:50%;width:min(260px,20vw);animation-delay:1.2s}
+.deco-3{top:85%;width:min(280px,22vw);animation-delay:2.4s}
+/* Decorative geometric lines between SVGs */
+.geo-line{position:absolute;pointer-events:none;z-index:2}
+.geo-vert{width:3px;background:linear-gradient(180deg,transparent,var(--green) 15%,var(--green) 85%,transparent);border-radius:100px}
+.geo-vert.gl1{left:-10%;top:5%;height:24%;animation:linePulse 2.5s ease-in-out infinite}
+.geo-vert.gl2{right:-10%;top:35%;height:28%;animation:linePulse 2.5s ease-in-out .7s infinite}
+.geo-vert.gl3{left:-10%;top:65%;height:22%;animation:linePulse 2.5s ease-in-out 1.4s infinite}
+.geo-dots{position:absolute;width:10px;height:10px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:2;box-shadow:0 20px 0 var(--green),0 40px 0 var(--purple),0 60px 0 var(--green);animation:float 4s ease-in-out .5s infinite}
+.geo-dots.gd1{right:-10%;top:8%}
+.geo-dots.gd2{left:-10%;top:42%;box-shadow:0 20px 0 var(--purple),0 40px 0 var(--green);animation-delay:1.5s}
+.geo-dots.gd3{right:-10%;top:68%;animation-delay:2.5s}
+.geo-dash{position:absolute;height:3px;background:var(--green);border-radius:100px;pointer-events:none;z-index:2;animation:dashGrow 3s ease-in-out infinite}
+.geo-dash.gs1{left:-10%;top:28%;animation-delay:0s}
+.geo-dash.gs2{right:-10%;top:58%;animation-delay:1.2s}
+@keyframes linePulse{0%,100%{opacity:.18}50%{opacity:.45}}
+@keyframes dashGrow{0%,100%{width:20px;opacity:.1;transform:scaleX(1)}50%{width:80px;opacity:.4;transform:scaleX(1.3)}}
+.section-header-wrap{animation:fadeIn .6s ease both}
+@media (max-width:640px){
+  .stack-card{flex-direction:column;padding:28px 20px;gap:18px;margin-bottom:60px;min-height:auto}
+  .stack-card-img{width:140px}
+  .stack-card-body h3{font-size:18px}
+}
+
+/* ════ HOW IT WORKS ════ */
+.steps-section{position:relative;padding:80px 24px;max-width:1100px;margin:0 auto;z-index:1}
+.steps-glow{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+.steps-glow.s1{width:400px;height:400px;background:var(--green);top:0;left:50%;transform:translateX(-50%);filter:blur(100px);opacity:.07}
+.steps-glow.s2{width:300px;height:300px;background:var(--blue);bottom:10%;right:5%;filter:blur(80px);opacity:.05}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;z-index:1}
+.steps::before{content:'';position:absolute;top:32px;left:12%;right:12%;height:3px;background:var(--border);border-radius:100px}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:64px;height:64px;border-radius:50%;background:var(--bg);border:3px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;margin:0 auto 14px;transition:all .3s;color:var(--text2)}
+.step:hover .step-num{border-color:var(--green);color:var(--green);transform:scale(1.1);box-shadow:0 0 24px rgba(88,204,2,.15)}
+.step h4{font-size:17px;font-weight:700;margin-bottom:6px}
+.step p{font-size:14px;color:var(--text2)}
+
+/* ════ STATS ════ */
+.stats-strip{position:relative;background:linear-gradient(135deg,var(--green),#3DA500);padding:64px 24px;text-align:center;overflow:hidden}
+.stats-strip::before{content:'';position:absolute;width:600px;height:600px;background:rgba(255,255,255,.06);border-radius:50%;top:-30%;right:-10%;pointer-events:none}
+.stats-strip::after{content:'';position:absolute;width:400px;height:400px;background:rgba(255,255,255,.04);border-radius:50%;bottom:-20%;left:-8%;pointer-events:none}
+.stats-strip h2{color:#fff;font-size:34px;font-weight:800;margin-bottom:32px}
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:1000px;margin:0 auto}
+.stat-item{padding:10px}
+.stat-num{font-size:44px;font-weight:800;color:#fff;margin-bottom:4px}
+.stat-lbl{font-size:14px;color:rgba(255,255,255,.8);font-weight:600}
+
+/* ════ CTA ════ */
+.cta{position:relative;text-align:center;padding:100px 24px}
+.cta-glow{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+.cta-glow.c1{width:450px;height:450px;background:var(--green);top:10%;left:50%;transform:translateX(-50%);filter:blur(100px);opacity:.06}
+.cta-card{max-width:600px;margin:0 auto;background:var(--bg);border:2px solid var(--border);border-radius:var(--radius-lg);padding:56px 36px;position:relative;overflow:hidden;z-index:1}
+.cta-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:var(--green-light);border-radius:50%;opacity:.5}
+.cta-card h2{font-size:32px;font-weight:800;margin-bottom:10px;position:relative}
+.cta-card p{font-size:17px;color:var(--text2);margin-bottom:28px;position:relative}
+
+/* ════ FOOTER ════ */
+.footer{padding:28px 24px;text-align:center;border-top:1px solid var(--border)}
+.footer p{font-size:13px;color:var(--text2)}
+
+/* ════ MODAL ════ */
+.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal{background:var(--bg);border-radius:var(--radius-lg);padding:36px 30px;width:400px;max-width:95vw;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px) scale(.96);transition:transform .3s var(--ease)}
+.modal-overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;top:12px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:var(--bg2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all .2s}
+.modal-close:hover{background:var(--red);color:#fff}
+.modal h3{font-size:22px;font-weight:800;margin-bottom:6px;text-align:center}
+.modal-sub{text-align:center;font-size:14px;color:var(--text2);margin-bottom:24px}
+.modal-sub a{color:var(--green);font-weight:700;cursor:pointer;text-decoration:none}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.form-group input,.form-group select{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:var(--radius);font-size:15px;font-family:inherit;background:var(--bg2);transition:all .2s;outline:none}
+.form-group input:focus,.form-group select:focus{border-color:var(--green);background:var(--bg);box-shadow:0 0 0 4px rgba(88,204,2,.08)}
+.form-btn{width:100%;padding:14px;border:none;border-radius:var(--radius);font-size:16px;font-weight:700;cursor:pointer;background:var(--green);color:#fff;box-shadow:var(--shadow-btn);transform:translateY(0);transition:all .2s;margin-top:6px}
+.form-btn:hover{transform:translateY(2px);box-shadow:0 2px 0 #45A502}
+.form-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.form-err{padding:10px 14px;background:var(--red);color:#fff;border-radius:var(--radius);font-size:13px;font-weight:600;margin-bottom:14px;display:none}
+.role-toggle{display:flex;gap:8px;margin-bottom:14px}
+.role-btn{flex:1;padding:10px;border:2px solid var(--border);border-radius:var(--radius);background:var(--bg);cursor:pointer;font-weight:600;font-size:14px;text-align:center;transition:all .2s}
+.role-btn:hover{border-color:var(--green)}
+.role-btn.sel{border-color:var(--green);background:var(--green-light);color:var(--green-dark)}
+
+@media (max-width:768px){
+  .hero-cards{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,1fr);gap:24px}
+  .steps::before{display:none}
+  .nav-links{gap:6px}.nav-btn{padding:6px 12px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="/" class="nav-brand"><span class="nav-icon">R</span><span class="nav-title">RealEnglish</span></a>
+  <div class="nav-links" id="navLinks"></div>
+</nav>
+
+<!-- Modals -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModals()">&times;</button>
+    <h3>欢迎回来</h3>
+    <p class="modal-sub">还没有账号？<a onclick="switchModal('register')">立即注册</a></p>
+    <div class="form-err" id="loginErr"></div>
+    <div class="role-toggle" id="loginRoleToggle">
+      <div class="role-btn sel" data-role="student" onclick="selectLoginRole(this)">我是学生</div>
+      <div class="role-btn" data-role="teacher" onclick="selectLoginRole(this)">我是教师</div>
+    </div>
+    <div class="form-group"><label>邮箱或用户名</label><input id="loginId" placeholder="输入邮箱或用户名" autocomplete="username"></div>
+    <div class="form-group"><label>密码</label><input id="loginPw" type="password" placeholder="输入密码" autocomplete="current-password"></div>
+    <button class="form-btn" id="loginBtn" onclick="handleLogin()">登录</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModals()">&times;</button>
+    <h3>创建账号</h3>
+    <p class="modal-sub">已有账号？<a onclick="switchModal('login')">去登录</a></p>
+    <div class="form-err" id="regErr"></div>
+    <div class="role-toggle" id="roleToggle">
+      <div class="role-btn sel" data-role="student" onclick="selectRole(this)">我是学生</div>
+      <div class="role-btn" data-role="teacher" onclick="selectRole(this)">我是教师</div>
+    </div>
+    <div class="form-group"><label>用户名</label><input id="regUser" placeholder="2-50个字符" autocomplete="username"></div>
+    <div class="form-group"><label>邮箱</label><input id="regEmail" type="email" placeholder="your@email.com" autocomplete="email"></div>
+    <div class="form-group"><label>密码</label><input id="regPw" type="password" placeholder="至少8位，含字母和数字" autocomplete="new-password"></div>
+    <div class="form-group" id="inviteGroup"><label>教师邀请码（选填）</label><input id="regInvite" placeholder="输入4位教师邀请码以绑定班级" maxlength="4" style="text-transform:uppercase;text-align:center;letter-spacing:4px"></div>
+    <button class="form-btn" id="regBtn" onclick="handleRegister()">注册</button>
+  </div>
+</div>
+
+<!-- ════ HERO ════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg-deco d1"></div><div class="hero-bg-deco d2"></div><div class="hero-bg-deco d3"></div>
+  <img src="/assets/typing.svg" alt="" class="hero-illustration-left" />
+  <img src="/assets/learning.svg" alt="" class="hero-illustration" />
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> 武汉理工大学 &middot; 华工杯 AI 创新大赛</div>
+    <h1>用<span class="hl">真实影视</span>学地道英语</h1>
+    <p>35 段精选美剧英剧电影片段，DeepSeek 大模型智能出题，科大讯飞语音评测。<br>看 &rarr; 听 &rarr; 说 &rarr; 评，四步闭环提升英语能力。</p>
+    <div class="hero-btns">
+      <button class="btn-lg btn-green" onclick="openModal('register')">免费开始学习</button>
+      <button class="btn-lg btn-white" onclick="scrollToSection('#features')">了解更多</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SCROLL STACK ════ -->
+<section class="section" id="features">
+  <div class="section-header-wrap">
+    <div class="section-tag">核心功能</div>
+    <h2 class="section-title">看 &rarr; 听 &rarr; 说 &rarr; 评</h2>
+    <p class="section-sub">四步闭环学习法，全方位提升你的英语听说能力。</p>
+  </div>
+
+  <div class="scroll-stack-wrapper">
+      <div class="stack-glow sg1"></div><div class="stack-glow sg2"></div><div class="stack-glow sg3"></div><div class="stack-glow sg4"></div><div class="stack-glow sg5"></div>
+      <img src="/assets/around-the-world.svg" alt="" class="deco-svg deco-right deco-1">
+      <img src="/assets/ai-response.svg" alt="" class="deco-svg deco-left deco-2">
+      <img src="/assets/fill-the-blank.svg" alt="" class="deco-svg deco-right deco-3">
+      <div class="geo-line geo-vert gl1"></div><div class="geo-line geo-vert gl2"></div><div class="geo-line geo-vert gl3"></div>
+      <div class="geo-dots gd1"></div><div class="geo-dots gd2"></div><div class="geo-dots gd3"></div>
+      <div class="geo-dash gs1"></div><div class="geo-dash gs2"></div>
+      <div class="stack-card">
+        <img src="/assets/movie-night.svg" alt="" class="stack-card-img">
+        <div class="stack-card-body">
+          <h3>影视片段学习</h3>
+          <p>来自美剧英剧电影的真实对话，B站播放器内嵌，中英对照字幕自由切换。</p>
+        </div>
+      </div>
+      <div class="stack-card">
+        <img src="/assets/chat-with-ai.svg" alt="" class="stack-card-img">
+        <div class="stack-card-body">
+          <h3>AI 智能出题</h3>
+          <p>DeepSeek 大模型根据对话内容自动生成托业风格听力题，难度自适应匹配你的英语水平。</p>
+        </div>
+      </div>
+      <div class="stack-card">
+        <img src="/assets/woman-with-headphone.svg" alt="" class="stack-card-img">
+        <div class="stack-card-body">
+          <h3>口语评测</h3>
+          <p>科大讯飞语音评测引擎，从准确度、流畅度、完整度三维度精准评分，AI 教练实时反馈。</p>
+        </div>
+      </div>
+      <div class="stack-card">
+        <img src="/assets/road-to-knowledge.svg" alt="" class="stack-card-img">
+        <div class="stack-card-body">
+          <h3>学情分析</h3>
+          <p>教师端多维学习报告，AI 生成英雄之旅风格叙事，帮助教师精准掌握每个学生的学习状态。</p>
+        </div>
+      </div>
+      <div class="scroll-stack-end"></div>
+    </div>
+</section>
+
+<!-- ════ HOW IT WORKS ════ -->
+<div class="steps-section">
+  <div class="steps-glow s1"></div><div class="steps-glow s2"></div>
+  <div class="section-tag">学习流程</div>
+  <h2 class="section-title">四步开始你的学习之旅</h2>
+  <p class="section-sub">从定级测试到流利口语，我们一路陪伴。</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h4>定级测试</h4><p>10题测评你的英语水平</p></div>
+    <div class="step"><div class="step-num">2</div><h4>选择片段</h4><p>浏览你感兴趣的影视内容</p></div>
+    <div class="step"><div class="step-num">3</div><h4>答题练习</h4><p>AI 出题，实时反馈解析</p></div>
+    <div class="step"><div class="step-num">4</div><h4>口语评测</h4><p>跟读/自由/情景对话，讯飞评分</p></div>
+  </div>
+</div>
+
+<!-- ════ STATS ════ -->
+<section class="stats-strip" id="stats">
+  <h2>学习的每一步都算数</h2>
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num" data-end="35">0</div><div class="stat-lbl">影视学习片段</div></div>
+    <div class="stat-item"><div class="stat-num" data-end="3">0</div><div class="stat-lbl">难度分级（初/中/高）</div></div>
+    <div class="stat-item"><div class="stat-num" data-end="4">0</div><div class="stat-lbl">口语评分维度</div></div>
+    <div class="stat-item"><div class="stat-num" data-end="30">0</div><div class="stat-lbl">天学习趋势追踪</div></div>
+    <div class="stat-item"><div class="stat-num" data-end="8">0</div><div class="stat-lbl">影视内容分类</div></div>
+  </div>
+</section>
+
+<!-- ════ CTA ════ -->
+<section class="cta" id="cta">
+  <div class="cta-glow c1"></div>
+  <div class="cta-card">
+    <h2>准备好开始了吗？</h2>
+    <p>加入 RealEnglish，在真实影视场景中提升你的英语听说能力。</p>
+    <button class="btn-lg btn-green" onclick="openModal('register')">免费注册，开始学习</button>
+  </div>
+</section>
+
+<footer class="footer"><p>&copy; 2026 RealEnglish 真语英语 — 武汉理工大学 "华工杯" AI 应用创新大赛参赛作品</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="/landing.js"></script>
+</body>
+</html>

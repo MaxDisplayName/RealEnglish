@@ -1,0 +1,2 @@
+ cd backend
+  ..\.venv\Scripts\python.exe init_users.py

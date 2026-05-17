@@ -1,0 +1,48 @@
+# ── 敏感信息 ──
+.env
+.env.*
+!.env.example
+
+# ── 数据库 ──
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.eggs/
+dist/
+*.egg
+
+# ── Node ──
+node_modules/
+npm-debug.log*
+
+# ── 构建产物 ──
+frontend/dist/
+
+# ── IDE ──
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── 系统 ──
+.DS_Store
+Thumbs.db
+
+# ── Remotion 输出 ──
+remotion-video/out/
+remotion-video/node_modules/
+
+# ── 日志 ──
+backend/logs/
+*.log
+
+# ── 临时文件 ──
+tmp/
+temp/
