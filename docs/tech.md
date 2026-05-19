@@ -161,7 +161,7 @@ json
 
 #### 已解决的实现问题
 
-1. **凭证配置**: APIKey（344032...）和 APISecret（YzYw...）不可颠倒，否则 HMAC 签名验证失败。
+1. **凭证配置**: APIKey 和 APISecret 不可颠倒，否则 HMAC 签名验证失败。
 2. **WebSocket 协议**: 严格遵循三阶段协议 —— SSB（参数上传，含 `common.app_id` + `business`）→ AUW（音频分片，每帧需 `common.app_id` + `business.aus/aue` + 间隔 40ms）→ 响应（base64 编码 XML）。
 3. **音频格式**: 前端 WebM/Opus 必须转为 PCM 16kHz/16bit/单声道（ffmpeg 参数 `-ac 1 -ar 16000 -sample_fmt s16 -f s16le`）。
 4. **分数制统一**: 讯飞 ISE 返回 5 分制，前端按 5 分制展示，所有维度（含完整度）均显示。

@@ -412,7 +412,7 @@ LANGSMITH_ENDPOINT=https://api.smith.langchain.com
 LANGSMITH_API_KEY=lsv2_xxx
 LANGSMITH_PROJECT="RealEnglish"
 
-OPENAI_API_KEY=sk-xxxxx
+OPENAI_API_KEY=sk-xxx
 ```
 
 完成。随后每当用户调用智能体，可以在LangSmith网站上看到agent生成和调用工具的情况！
